@@ -2,11 +2,11 @@
   "scriptFile": "__init__.py",
   "bindings": [
     {
-      "name": "myblob",
+      "name": "image",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "samples-workitems/{name}",
-      "connection": ""
+      "path": "images/{name}",
+      "connection": "ImagesStorageAccount"
     }
   ]
 }
