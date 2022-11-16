@@ -5,9 +5,12 @@ This is the microservice that call AI services
 ```powershell
 $storageAcountConnectionString = "Ex: DefaultEndpointsProtocol=htt... "
 $appInsightsConnectionString = "InstrumentationKey=...;IngestionEndpoint=https://eastasia-..."
-docker build . -t image-reader-function; docker run -p 8889:80 `
+$image = "newhorizonappacr.azurecr.io/new-horizon-backend-ai:latest"
+docker build . -t $image; 
+docker run -p 8889:80 `
    -e AZUREWEBJOBSSTORAGE=$storageAcountConnectionString `
-   -e AzureWebJobsImagesStorageAccount=$storageAcountConnectionString `
-   -e APPLICATIONINSIGHTS_CONNECTION_STRING=$appInsightsConnectionString
-   image-reader-function
+   -e AZUREWEBJOBSIMAGESSTORAGEACCOUNT=$storageAcountConnectionString `
+   -e APPLICATIONINSIGHTS_CONNECTION_STRING=$appInsightsConnectionString `
+   -e COGNITIVE_SERVICES_KEY=... `
+   $image
 ```
