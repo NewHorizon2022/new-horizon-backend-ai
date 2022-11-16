@@ -24,7 +24,7 @@ ENDPOINT = "https://eastus.api.cognitive.microsoft.com"
 # Create a function that counts how many people are in a photo, using Microsoft FACE API
 def count_people_in_photo(image_url) -> int:
     # Create an authenticated FaceClient.
-    face_clienst = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
+    face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
 
     # Detect faces in the image that contains the single face
     single_face_image_url = image_url
