@@ -19,23 +19,29 @@ from azure.cognitiveservices.vision.face.models import TrainingStatusType, Perso
 
 # Cognitive services keys and endpoints
 KEY = os.environ['COGNITIVE_SERVICES_KEY']
-ENDPOINT = "https://eastus.api.cognitive.microsoft.com"
+ENDPOINT = os.environ['COGNITIVE_SERVICES_ENDPOINT']
 
 # Create a function that counts how many people are in a photo, using Microsoft FACE API
-def count_people_in_photo(image_url):
+def count_people_in_photo(image_url, file_name):
+    logging.info(f'cognitive services key: {KEY}')
+    logging.info(f'image file path: {image_url}')
+    logging.info(f'image file name: {file_name}')
     # Create an authenticated FaceClient.
     face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
 
     # Detect faces in the image that contains the single face
-    single_face_image_url = image_url
-    single_image_name = os.path.basename(single_face_image_url)
-    detected_faces = face_client.face.detect_with_url(url=single_face_image_url, recognition_model='recognition_01', return_recognition_model=False, detection_model='detection_03')
-
+    detected_faces = face_client.face.detect_with_url(url=image_url, 
+        recognition_model='recognition_01', 
+        return_recognition_model=False, 
+        detection_model='detection_03', 
+        return_face_id=False)
+        
+    logging.info(f'file processed: {file_name}')
     if not detected_faces:
-        raise Exception('No face detected from image {}'.format(single_image_name))
+        raise Exception('No face detected from image {}'.format(file_name))
 
     for face in detected_faces: 
-        logging.info(f'Detected face ID from {single_image_name} : {face.face_id}')
+        logging.info(f'Detected face ID from {file_name} : {face.face_id}')
 
     logging.info(f'Detected {detected_faces.__len__()} faces')
     return detected_faces

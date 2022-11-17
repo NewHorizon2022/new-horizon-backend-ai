@@ -5,7 +5,7 @@
       "name": "image",
       "type": "blobTrigger",
       "direction": "in",
-      "path": "images/{name}",
+      "path": "images-trigger/{name}",
       "connection": "ImagesStorageAccount"
     }
   ]
