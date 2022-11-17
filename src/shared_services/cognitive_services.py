@@ -22,7 +22,7 @@ KEY = os.environ['COGNITIVE_SERVICES_KEY']
 ENDPOINT = "https://eastus.api.cognitive.microsoft.com"
 
 # Create a function that counts how many people are in a photo, using Microsoft FACE API
-def count_people_in_photo(image_url) -> int:
+def count_people_in_photo(image_url):
     # Create an authenticated FaceClient.
     face_client = FaceClient(ENDPOINT, CognitiveServicesCredentials(KEY))
 
@@ -38,4 +38,4 @@ def count_people_in_photo(image_url) -> int:
         logging.info(f'Detected face ID from {single_image_name} : {face.face_id}')
 
     logging.info(f'Detected {detected_faces.__len__()} faces')
-    return detected_faces.__len__()
+    return detected_faces
