@@ -6,9 +6,14 @@ from shared_services import cognitive_services
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing Health Check')
 
+    imagepath = req.params.get('path')
+
+    if not imagepath:
+        imagepath = 'https://newhorizonappstorage.blob.core.windows.net/demo-images/TBP_8461[1].jpg'
+        
     try:
         # Call the cognitive services to check if it is up and running
-        count = cognitive_services.count_people_in_photo('https://newhorizonappstorage.blob.core.windows.net/demo-images/TBP_8461[1].jpg')
+        count = cognitive_services.count_people_in_photo(imagepath)
         return func.HttpResponse(f"Detected: {count}", status_code=200)
     except Exception as e:
         logging.error(f'Error: {str(e)}')

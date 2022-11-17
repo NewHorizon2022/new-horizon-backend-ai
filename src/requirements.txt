@@ -5,3 +5,4 @@
 azure-functions
 azure-cognitiveservices-vision-face
 Pillow
+azure-cosmos
