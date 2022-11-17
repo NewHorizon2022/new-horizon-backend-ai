@@ -2,48 +2,22 @@ import os
 import logging
 import azure.functions as func
 
-from shared_services import cognitive_services, image_processing_service
-from shared_services.storage_services import upload_to_blob
+poors_man_version = '0.0.1'
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Processing Health Check')
 
-    file_path = req.params.get('filepath')
+    cognitive_key                    = os.environ['COGNITIVE_SERVICES_KEY']
+    cognitive_endpoint               = os.environ['COGNITIVE_SERVICES_ENDPOINT']
+    appInsights_connection_string    = os.environ['APPINSIGHTS_CONNECTION_STRING']
+    azure_webjob_storage             = os.environ['AZUREWEBJOBSSTORAGE']
+    azure_webjob_images_storage      = os.environ['AZUREWEBJOBSIMAGESSTORAGEACCOUNT']
 
-    if not file_path:
-        file_path = 'https://newhorizonappstorage.blob.core.windows.net/demo-images/TBP_8461[1].jpg'
+    if(cognitive_key and cognitive_endpoint and appInsights_connection_string and azure_webjob_storage and azure_webjob_images_storage):
+        message = f'[V{poors_man_version}] Health Check OK'
+        logging.warn(message)
+        return func.HttpResponse(message)
 
-    try:
-        
-        file_name = os.path.basename(file_path)
-        logging.info(f'requesting to process file {file_name} from {file_path}')
-                
-        logging.info('counting people...')
-        detected_faces = cognitive_services.count_people_in_photo(file_path, file_name)
-        logging.info(f"Detected: {detected_faces.__len__()} faces")
-
-        logging.info('processing image...')
-        image_processing_service.process_image(detected_faces, file_path, file_name)
-        logging.info('processing image...')
-        
-        return func.HttpResponse(f"Detected: {detected_faces}", status_code=200)
-    except Exception as e:
-        logging.error(f'Error: {str(e)}')
-        return func.HttpResponse(f"Error {str(e)}", status_code=500)
-
-
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
-    # if name:
-    #     return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    # else:
-    #     return func.HttpResponse(
-    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-    #          status_code=200
-    #     )
+    message = f'[V{poors_man_version}] Health Check ERROR'
+    logging.error(message)
+    return func.HttpResponse(message, status_code=500)
