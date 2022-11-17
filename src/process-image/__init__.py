@@ -1,3 +1,4 @@
+import json
 import os
 import logging
 import azure.functions as func
@@ -26,24 +27,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         image_processing_service.process_image(detected_faces, file_path, file_name)
         logging.info('processing image...')
         
-        return func.HttpResponse(f"Detected: {detected_faces}", status_code=200)
+        # Build a return object
+        return_object = {}
+        return_object['file_name'] = file_name
+        return_object['file_path'] = file_path
+        return_object['detected_faces_count'] = detected_faces.__len__()
+        # return_object['detected_faces'] = detected_faces.response.json()
+
+        return_json = json.dumps(return_object)
+        return func.HttpResponse(return_json, status_code=200)
+        
     except Exception as e:
         logging.error(f'Error: {str(e)}')
         return func.HttpResponse(f"Error {str(e)}", status_code=500)
-
-
-    # name = req.params.get('name')
-    # if not name:
-    #     try:
-    #         req_body = req.get_json()
-    #     except ValueError:
-    #         pass
-    #     else:
-    #         name = req_body.get('name')
-    # if name:
-    #     return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    # else:
-    #     return func.HttpResponse(
-    #          "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-    #          status_code=200
-    #     )
