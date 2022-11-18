@@ -19,18 +19,16 @@ def getRectangle(faceDictionary):
     return (left, top, right, bottom)
 
 def process_image(detected_faces, image_url, file_name):
-    if not detected_faces:
-        raise Exception('No face detected from image {}'.format(image_url))
-    # Download the image from the url
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
 
-    # For each face returned use the face rectangle and draw a box.
-    logging.info('Drawing rectangle around face... see popup for results.')
-    draw = ImageDraw.Draw(img)
-    for face in detected_faces:
-        rectangle = getRectangle(face)
-        draw.rounded_rectangle(rectangle, outline='blue', width=5)
+    if detected_faces:
+        # For each face returned use the face rectangle and draw a box.
+        logging.info('Drawing rectangle around face... see popup for results.')
+        draw = ImageDraw.Draw(img)
+        for face in detected_faces:
+            rectangle = getRectangle(face)
+            draw.rounded_rectangle(rectangle, outline='blue', width=5)
 
     # Add the count of faces detected to the image
     width, height = img.size
