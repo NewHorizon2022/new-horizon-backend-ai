@@ -2,15 +2,19 @@ name: Trigger auto deployment for new-horizon-cont-backend-ai-app
 
 # When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
+  workflow_dispatch:
   push:
     branches: 
-      branches: [ main ]
-    pull_request:
-      branches: [ "main" ]
+      [ main ]
     paths:
-    - 'src/**'
-    - '.github/workflows/new-horizon-cont-backend-ai-app-AutoDeployTrigger-f01288c4-622a-4732-b46f-bc94c104ba08.yml'
+      - 'src/**'
+      - '.github/workflows/new-horizon-cont-backend-ai-app-AutoDeployTrigger-f01288c4-622a-4732-b46f-bc94c104ba08.yml'
+  pull_request:
+    branches:
+      [ main ]
+    paths:
+      - 'src/**'
+      - '.github/workflows/new-horizon-cont-backend-ai-app-AutoDeployTrigger-f01288c4-622a-4732-b46f-bc94c104ba08.yml'
 
   # Allow mannually trigger 
   workflow_dispatch:      
