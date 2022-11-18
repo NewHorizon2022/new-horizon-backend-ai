@@ -1,3 +1,4 @@
+import os
 import requests
 import logging
 from urllib.parse import urlparse
@@ -32,14 +33,14 @@ def process_image(detected_faces, image_url, file_name):
         draw.rounded_rectangle(rectangle, outline='blue', width=5)
 
     # Add the count of faces detected to the image
-    logging.info('loading font')
-    fnt = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf", 60)
-    logging.info(f'done loading font. Image size {img.size}')
-
     width, height = img.size
     logging.info(f'width: {width}, height: {height}')
+    
+    logging.info('loading font')
+    fnt = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', height)
+    logging.info(f'done loading font. Image size {img.size}. Font Size {fnt.size}')
 
-    draw.text((width / 2, height / 2), detected_faces.__len__(), font=fnt, fill=(107, 0, 255, 64))
+    draw.text((width / 2, height / 2), str(detected_faces.__len__()), font=fnt, fill=(255, 0, 255, 64))
     logging.info('done drawing text')
 
     # Display the image in the users default image browser.
