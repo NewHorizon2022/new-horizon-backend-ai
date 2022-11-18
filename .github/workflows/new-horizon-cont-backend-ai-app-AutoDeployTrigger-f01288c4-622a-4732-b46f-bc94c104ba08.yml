@@ -6,6 +6,8 @@ on:
   push:
     branches: 
       [ main ]
+    pullrequest: 
+      [ main ]
     paths:
     - 'src/**'
     - '.github/workflows/new-horizon-cont-backend-ai-app-AutoDeployTrigger-f01288c4-622a-4732-b46f-bc94c104ba08.yml'
