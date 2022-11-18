@@ -30,6 +30,7 @@ def process_image(detected_faces, image_url, file_name):
             rectangle = getRectangle(face)
             draw.rounded_rectangle(rectangle, outline='blue', width=5)
 
+
     # Add the count of faces detected to the image
     width, height = img.size
     logging.info(f'width: {width}, height: {height}')
