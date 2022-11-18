@@ -37,10 +37,10 @@ def process_image(detected_faces, image_url, file_name):
     logging.info(f'width: {width}, height: {height}')
     
     logging.info('loading font')
-    fnt = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', height / 2)
+    fnt = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf', int(height / 2))
     logging.info(f'done loading font. Image size {img.size}. Font Size {fnt.size}')
 
-    draw.text((width / 2, height / 2), str(detected_faces.__len__()), font=fnt, fill=(255, 0, 255, 64))
+    draw.text((int(width / 2), int(height / 2)), str(detected_faces.__len__()), font=fnt, fill=(255, 0, 255, 64))
     logging.info('done drawing text')
 
     # Display the image in the users default image browser.
