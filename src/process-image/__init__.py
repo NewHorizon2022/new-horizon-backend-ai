@@ -25,7 +25,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
         logging.info('processing image...')
         image_processing_service.process_image(detected_faces, file_path, file_name)
-        logging.info('processing image...')
+        logging.info('image processed')
         
         # Build a return object
         return_object = {}
@@ -34,7 +34,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return_object['detected_faces_count'] = detected_faces.__len__()
         # return_object['detected_faces'] = detected_faces.response.json()
 
+        logging.info('dumping json...')
         return_json = json.dumps(return_object)
+        logging.info('that is it!')
         return func.HttpResponse(return_json, status_code=200)
         
     except Exception as e:

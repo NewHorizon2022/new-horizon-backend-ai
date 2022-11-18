@@ -9,7 +9,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     cognitive_key                    = os.environ['COGNITIVE_SERVICES_KEY']
     cognitive_endpoint               = os.environ['COGNITIVE_SERVICES_ENDPOINT']
-    appInsights_connection_string    = os.environ['APPINSIGHTS_CONNECTION_STRING']
+    appInsights_connection_string    = os.environ['APPLICATIONINSIGHTS_CONNECTION_STRING']
     azure_webjob_storage             = os.environ['AZUREWEBJOBSSTORAGE']
     azure_webjob_images_storage      = os.environ['AZUREWEBJOBSIMAGESSTORAGEACCOUNT']
 

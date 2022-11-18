@@ -36,9 +36,10 @@ def process_image(detected_faces, image_url, file_name):
     draw = ImageDraw.Draw(img)
     for face in detected_faces:
         rectangle = getRectangle(face)
-        draw.rounded_rectangle(rectangle, outline='green', width=5)
+        draw.rounded_rectangle(rectangle, outline='blue', width=5)
 
     # Display the image in the users default image browser.
+    logging.info(f'Saving {file_name}...')
     img.save(file_name)
     logging.info(f'{file_name} saved')
 
