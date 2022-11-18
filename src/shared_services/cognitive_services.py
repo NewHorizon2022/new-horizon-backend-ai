@@ -38,7 +38,7 @@ def count_people_in_photo(image_url, file_name):
         
     logging.info(f'file processed: {file_name}')
     if not detected_faces:
-        raise Exception('No face detected from image {}'.format(file_name))
+        logging.warn('No face detected from image {}'.format(file_name))
 
     for face in detected_faces: 
         logging.info(f'Detected face ID from {file_name} : {face.face_id}')

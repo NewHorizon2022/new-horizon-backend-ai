@@ -21,11 +21,11 @@ def getRectangle(faceDictionary):
 def process_image(detected_faces, image_url, file_name):
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
+    draw = ImageDraw.Draw(img)
 
     if detected_faces:
         # For each face returned use the face rectangle and draw a box.
         logging.info('Drawing rectangle around face... see popup for results.')
-        draw = ImageDraw.Draw(img)
         for face in detected_faces:
             rectangle = getRectangle(face)
             draw.rounded_rectangle(rectangle, outline='blue', width=5)
