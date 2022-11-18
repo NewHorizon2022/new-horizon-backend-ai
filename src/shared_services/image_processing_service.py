@@ -1,10 +1,3 @@
-import asyncio
-import io
-import glob
-import os
-import sys
-import time
-import uuid
 import requests
 import logging
 from urllib.parse import urlparse
@@ -32,7 +25,7 @@ def process_image(detected_faces, image_url, file_name):
     img = Image.open(BytesIO(response.content))
 
     # For each face returned use the face rectangle and draw a box.
-    logging.info(('Drawing rectangle around face... see popup for results.')
+    logging.info('Drawing rectangle around face... see popup for results.')
     draw = ImageDraw.Draw(img)
     for face in detected_faces:
         rectangle = getRectangle(face)
