@@ -33,7 +33,7 @@ def process_image(detected_faces, image_url, file_name):
 
     # Add the count of faces detected to the image
     logging.info('loading font')
-    fnt = ImageFont.truetype("/usr/share/fonts/truetype/Sarai/Sarai.ttf", 60)
+    fnt = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf", 60)
     logging.info(f'done loading font. Image size {img.size}')
 
     width, height = img.size
