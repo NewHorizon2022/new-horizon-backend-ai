@@ -22,7 +22,7 @@ def index():
     return output
 
 @route('/api/health-check')
-def health_check():
+def health_endpoint():
     return health_check.health_check(logger)
 
 run(host='0.0.0.0', reloader=True, port=80)
