@@ -33,7 +33,7 @@ def health_check(logger):
         message = f'[V{poors_man_version}] Health Check ERROR'
         logger.error(message)
         return message
-    
+
     message = f'[V{poors_man_version}] Health Check OK'
     logger.info(message)
     return message
