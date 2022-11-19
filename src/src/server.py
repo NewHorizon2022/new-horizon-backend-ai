@@ -18,11 +18,11 @@ def index():
     url = request.query.filepath
     logger.info(f'Processing Process Image: {url}')
     output = process_image.process_image(url, logger)
-    
+
     return output
 
-@route('/health-check')
+@route('/api/health-check')
 def health_check():
     return health_check.health_check(logger)
 
-run(host='0.0.0.0', reloader=True, port=8080)
+run(host='0.0.0.0', reloader=True, port=80)
