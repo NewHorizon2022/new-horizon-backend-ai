@@ -25,4 +25,5 @@ def index():
 def health_endpoint():
     return health_check.health_check(logger)
 
-run(host='0.0.0.0', reloader=True, port=80)
+if __name__ == "__main__":
+    run(host='0.0.0.0', port=80, debug=True, reloader=True)
