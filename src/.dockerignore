@@ -1,2 +1,3 @@
-local.settings.json
-variables.txt
+.venv
+.git
+Dockerfile

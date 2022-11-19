@@ -1,6 +1,15 @@
 # new-horizon-backend-ai
 This is the microservice that call AI services
 
+# To run this locally
+```
+cd src
+python -m venv .venv
+.\env\Scripts\activate
+pip install -r requirements.txt
+starter.sh
+```
+
 # To run this locally in a Docker container
 ```powershell
 $storageAcountConnectionString = "Ex: DefaultEndpointsProtocol=htt... "
