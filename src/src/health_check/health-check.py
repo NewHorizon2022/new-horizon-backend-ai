@@ -2,7 +2,7 @@ import os
 
 poors_man_version = '0.0.1'
 
-def main(logger):
+def health_check(logger):
     logger.info('Processing Health Check')
 
     cognitive_key                    = os.environ['COGNITIVE_SERVICES_KEY']
