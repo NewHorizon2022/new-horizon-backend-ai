@@ -20,7 +20,7 @@ $cognitiveServicesEndpoint = "https://....cognitiveservices.azure.com/"
 
 docker build . -t $image;
 docker run -p 8889:80 `
-   -v $(pwd):/mnt/python-code `
+   -v ${pwd}:/mnt/python-code `
    -e AZUREWEBJOBSSTORAGE=$storageAcountConnectionString `
    -e AZUREWEBJOBSIMAGESSTORAGEACCOUNT=$storageAcountConnectionString `
    -e APPLICATIONINSIGHTS_CONNECTION_STRING=$appInsightsConnectionString `

@@ -1,7 +1,5 @@
 import os
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
-import azure.functions as func
-
 
 # create a function that uploads to azure blob storage
 def upload_to_blob(file_name, logger):
