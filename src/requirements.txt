@@ -7,6 +7,7 @@ urllib3==1.26.12
 opencensus-ext-azure
 
 azure-cognitiveservices-vision-face
+azure-cognitiveservices-vision-computervision
 Pillow
 azure-storage-blob
 azure-identity

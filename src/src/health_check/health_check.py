@@ -1,6 +1,6 @@
 import os
 
-poors_man_version = '0.0.2a'
+poors_man_version = '0.0.2b'
 
 def health_check(logger):
     logger.info('Processing Health Check')

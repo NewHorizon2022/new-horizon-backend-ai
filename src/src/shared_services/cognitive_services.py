@@ -2,7 +2,9 @@ import os
 from azure.cognitiveservices.vision.face import FaceClient
 from msrest.authentication import CognitiveServicesCredentials
 from azure.cognitiveservices.vision.face.models import TrainingStatusType, Person, QualityForRecognition
-
+from azure.cognitiveservices.vision.computervision import ComputerVisionClient
+from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
+from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
 
 # Cognitive services keys and endpoints
 KEY = os.environ['COGNITIVE_SERVICES_KEY']
@@ -10,7 +12,6 @@ ENDPOINT = os.environ['COGNITIVE_SERVICES_ENDPOINT']
 
 # Create a function that counts how many people are in a photo, using Microsoft FACE API
 def count_people_in_photo(image_url, file_name, logger):
-    logger.info(f'cognitive services key: {KEY}')
     logger.info(f'image file path: {image_url}')
     logger.info(f'image file name: {file_name}')
     # Create an authenticated FaceClient.

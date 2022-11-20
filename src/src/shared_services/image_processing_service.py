@@ -8,7 +8,7 @@ from msrest.authentication import CognitiveServicesCredentials
 from azure.cognitiveservices.vision.face.models import TrainingStatusType, Person, SnapshotObjectType, OperationStatusType
 from shared_services.storage_services import upload_to_blob
 
-def getRectangle(faceDictionary, logger):
+def get_rectangle_from_face(faceDictionary, logger):
     rect = faceDictionary.face_rectangle
     left = rect.left
     top = rect.top
@@ -17,7 +17,7 @@ def getRectangle(faceDictionary, logger):
     logger.info(f'left: {left}, top: {top}, bottom: {bottom}, right: {right}')
     return (left, top, right, bottom)
 
-def process_image(detected_faces, image_url, file_name, logger):
+def draw_rectangles_on_faces (detected_faces, image_url, file_name, logger):
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
     draw = ImageDraw.Draw(img)
@@ -26,13 +26,12 @@ def process_image(detected_faces, image_url, file_name, logger):
         # For each face returned use the face rectangle and draw a box.
         logger.info('Drawing rectangle around face... see popup for results.')
         for face in detected_faces:
-            rectangle = getRectangle(face, logger)
+            rectangle = get_rectangle_from_face(face, logger)
             draw.rounded_rectangle(rectangle, outline='blue', width=5)
-
 
     # Add the count of faces detected to the image
     width, height = img.size
-    logger.info(f'width: {width}, height: {height}')
+    logger.info(f'image size: width: {width}, height: {height}')
     
     logger.info('loading font')
     try:
@@ -46,6 +45,27 @@ def process_image(detected_faces, image_url, file_name, logger):
     logger.info('done drawing text')
 
     # Display the image in the users default image browser.
+    logger.info(f'Saving {file_name}...')
+    img.save(file_name)
+    logger.info(f'{file_name} saved')
+
+    logger.info('uploading to blob...')
+    upload_to_blob(file_name, logger)
+
+    logger.info(f'deleting {file_name}...')
+    os.remove(file_name)
+    logger.info(f'dile deleted: {file_name}.')
+
+
+    response = requests.get(image_url)
+    img = Image.open(BytesIO(response.content))
+    draw = ImageDraw.Draw(img)#
+    draw.shape()
+    draw.rounded_rectangle(rectangle, outline, width=5)
+
+    width, height = img.size
+    logger.info(f'Image size: width: {width}, height: {height}')
+    
     logger.info(f'Saving {file_name}...')
     img.save(file_name)
     logger.info(f'{file_name} saved')
