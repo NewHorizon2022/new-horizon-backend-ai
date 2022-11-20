@@ -41,7 +41,7 @@ def draw_rectangles_on_faces (detected_faces, image_url, file_name, logger):
         
     logger.info(f'done loading font. Image size {img.size}. Font Size {fnt.size}')
 
-    #draw.text((int(width / 2), int(height / 2)), str(detected_faces.__len__()), font=fnt, fill=(0, 255, 0, 64))
+    draw.text((int(width / 2), int(height / 2)), str(detected_faces.__len__()), font=fnt, fill=(0, 255, 0, 64))
     logger.info('done drawing text')
 
     # Display the image in the users default image browser.
@@ -56,11 +56,9 @@ def draw_rectangles_on_faces (detected_faces, image_url, file_name, logger):
     os.remove(file_name)
     logger.info(f'dile deleted: {file_name}.')
 
-
     response = requests.get(image_url)
     img = Image.open(BytesIO(response.content))
     draw = ImageDraw.Draw(img)#
-    draw.shape()
     draw.rounded_rectangle(rectangle, outline, width=5)
 
     width, height = img.size
