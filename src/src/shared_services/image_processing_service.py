@@ -55,22 +55,3 @@ def draw_rectangles_on_faces (detected_faces, image_url, file_name, logger):
     logger.info(f'deleting {file_name}...')
     os.remove(file_name)
     logger.info(f'dile deleted: {file_name}.')
-
-    response = requests.get(image_url)
-    img = Image.open(BytesIO(response.content))
-    draw = ImageDraw.Draw(img)#
-    draw.rounded_rectangle(rectangle, outline, width=5)
-
-    width, height = img.size
-    logger.info(f'Image size: width: {width}, height: {height}')
-    
-    logger.info(f'Saving {file_name}...')
-    img.save(file_name)
-    logger.info(f'{file_name} saved')
-
-    logger.info('uploading to blob...')
-    upload_to_blob(file_name, logger)
-
-    logger.info(f'deleting {file_name}...')
-    os.remove(file_name)
-    logger.info(f'dile deleted: {file_name}.')

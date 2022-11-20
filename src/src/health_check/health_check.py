@@ -34,6 +34,11 @@ def health_check(logger):
         logger.error(message)
         return message
 
+    # All variables are present
+    message = 'environment variables:\n'
+    for k, v in os.environ.items():
+        message += f'{k}={v}\n'
+
     message = f'[V{poors_man_version}] Health Check OK!'
     logger.info(message)
     return message
