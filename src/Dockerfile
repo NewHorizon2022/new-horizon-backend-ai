@@ -1,11 +1,12 @@
 FROM python:3-buster
 
 EXPOSE 80
+WORKDIR /app/live
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install -r /app/requirements.txt
+COPY requirements.txt /app/live/requirements.txt
+RUN pip install -r /app/live/requirements.txt
 
+COPY . /app/live
 
-WORKDIR /mnt/python-code/
-
-ENTRYPOINT [ "/mnt/python-code/starter.sh" ]
+RUN ["chmod", "+x", "/app/live/starter.sh"]
+ENTRYPOINT [ "/app/live/starter.sh" ]

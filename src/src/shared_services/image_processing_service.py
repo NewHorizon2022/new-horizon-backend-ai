@@ -41,7 +41,7 @@ def draw_rectangles_on_faces (detected_faces, image_url, file_name, logger):
         
     logger.info(f'done loading font. Image size {img.size}. Font Size {fnt.size}')
 
-    draw.text((int(width / 2), int(height / 2)), str(detected_faces.__len__()), font=fnt, fill=(255, 0, 255, 64))
+    #draw.text((int(width / 2), int(height / 2)), str(detected_faces.__len__()), font=fnt, fill=(0, 255, 0, 64))
     logger.info('done drawing text')
 
     # Display the image in the users default image browser.
