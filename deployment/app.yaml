@@ -1,0 +1,111 @@
+id: /subscriptions/480f876b-418e-4774-a0d2-a548fa505d29/resourceGroups/new-horizon-rg/providers/Microsoft.App/containerapps/new-horizon-cont-backend-ai-app
+identity:
+  principalId: 270e2bad-abca-4e29-ac8e-67b618ed17d5
+  tenantId: b317d745-eb97-4068-9a14-a2e967b0b72e
+  type: SystemAssigned
+location: East Asia
+name: new-horizon-cont-backend-ai-app
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    ingress:
+      allowInsecure: false
+      exposedPort: 0
+      external: true
+      fqdn: new-horizon-cont-backend-ai-app.icydesert-c0cda2c8.eastasia.azurecontainerapps.io
+      targetPort: 80
+      traffic:
+      - revisionName: new-horizon-cont-backend-ai-app--oforemy
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--5ypjuhd
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--aho18lg
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--1q1gfpy
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--yoh5643
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--ruybqk1
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--sm6ulh4
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--s95mrpa
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--1pjwbx5
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--2hs53pz
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--8wcmcvb
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--o5i4vkf
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--7rkdq55
+        weight: 0
+      - revisionName: new-horizon-cont-backend-ai-app--10s31nc
+        weight: 100
+      transport: Auto
+    registries:
+    - identity: ''
+      passwordSecretRef: newhorizoncontregistryazurecrio-newhorizoncontregistry
+      server: newhorizoncontregistry.azurecr.io
+      username: newhorizoncontregistry
+    secrets:
+    - name: storage-account-connection-string
+    - name: applicationinsights-connection-string
+    - name: cognitive-services-endpoint
+    - name: cognitive-services-key
+    - name: newhorizoncontregistryazurecrio-newhorizoncontregistry
+  customDomainVerificationId: 2EDAA64DC9734E648C45AFDE5F6B50B1DE57D99D41E09ED1D2A33008B277EB49
+  environmentId: /subscriptions/480f876b-418e-4774-a0d2-a548fa505d29/resourceGroups/new-horizon-rg/providers/Microsoft.App/managedEnvironments/new-horizon-cont-environment
+  eventStreamEndpoint: https://eastasia.azurecontainerapps.dev/subscriptions/480f876b-418e-4774-a0d2-a548fa505d29/resourceGroups/new-horizon-rg/containerApps/new-horizon-cont-backend-ai-app/eventstream
+  latestRevisionFqdn: new-horizon-cont-backend-ai-app--10s31nc.icydesert-c0cda2c8.eastasia.azurecontainerapps.io
+  latestRevisionName: new-horizon-cont-backend-ai-app--10s31nc
+  managedEnvironmentId: /subscriptions/480f876b-418e-4774-a0d2-a548fa505d29/resourceGroups/new-horizon-rg/providers/Microsoft.App/managedEnvironments/new-horizon-cont-environment
+  outboundIpAddresses:
+  - 20.239.25.230
+  provisioningState: Succeeded
+  template:
+    containers:
+    - env:
+      - name: AZUREWEBJOBSSTORAGE
+        secretRef: storage-account-connection-string
+        value: ''
+      - name: AZUREWEBJOBSIMAGESSTORAGEACCOUNT
+        secretRef: storage-account-connection-string
+        value: ''
+      - name: COGNITIVE_SERVICES_KEY
+        secretRef: cognitive-services-key
+        value: ''
+      - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+        secretRef: applicationinsights-connection-string
+        value: ''
+      - name: COGNITIVE_SERVICES_ENDPOINT
+        secretRef: cognitive-services-endpoint
+        value: ''
+      image: newhorizoncontregistry.azurecr.io/new-horizon-cont-backend-ai-app:d13f354c9f125cd912fd8c4d3e1738912ec03505
+      name: simple-hello-world-container
+      probes: []
+      resources:
+        cpu: 0.25
+        ephemeralStorage: ''
+        memory: 0.5Gi
+      volumeMounts:
+      - mountPath: /mnt/python-code
+        volumeName: python-code-volume
+    revisionSuffix: ''
+    scale:
+      maxReplicas: 5
+      minReplicas: 1
+    volumes:
+    - name: python-code-volume
+      storageName: newhorizonstorage
+      storageType: AzureFile
+resourceGroup: new-horizon-rg
+systemData:
+  createdAt: '2022-11-16T11:06:59.162287'
+  createdBy: crgarcia@live.com.ar
+  createdByType: User
+  lastModifiedAt: '2022-11-18T08:53:20.3176847'
+  lastModifiedBy: fbe13078-8838-469d-8ed2-da8678ab1027
+  lastModifiedByType: Application
+type: Microsoft.App/containerApps

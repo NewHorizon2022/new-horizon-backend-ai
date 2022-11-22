@@ -1,11 +1,12 @@
-# To enable ssh & remote debugging on app service change the base image to the one below
-FROM mcr.microsoft.com/azure-functions/python:4-python3.7-appservice
-# FROM mcr.microsoft.com/azure-functions/python:4-python3.7
+FROM python:3-buster
 
-ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
-    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+EXPOSE 80
+WORKDIR /app/live
 
-COPY requirements.txt /
-RUN pip install -r /requirements.txt
+COPY requirements.txt /app/live/requirements.txt
+RUN pip install -r /app/live/requirements.txt
 
-COPY . /home/site/wwwroot
+COPY . /app/live
+
+RUN ["chmod", "+x", "/app/live/starter.sh"]
+ENTRYPOINT [ "/app/live/starter.sh" ]
