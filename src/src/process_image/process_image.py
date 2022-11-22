@@ -17,7 +17,7 @@ def process_image(file_path, logger):
     logger.info(f"Detected: {detected_faces.__len__()} faces")
 
     logger.info('processing image...')
-    image_processing_service.draw_rectangles_on_faces(detected_faces, file_path, file_name, logger)
+    #image_processing_service.draw_rectangles_on_faces(detected_faces, file_path, file_name, logger)
     logger.info('image processed')
     
     # Build a return object
